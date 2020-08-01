@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="Order Details" alias="OrderDetails" created="2020-08-01T12:28:49" modified="2020-08-01T12:28:52" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="Order" parentTableSchema="dbo" parentTableName="Orders" x="282" y="20">
+      <foreignKeyColumn columnName="OrderID" parentColumnName="OrderID" />
+    </foreignKey>
+    <foreignKey id="OrderCustomer" parentTableSchema="dbo" parentTableName="Customers" baseForeignKey="Order" x="570" y="20">
+      <foreignKeyColumn columnName="CustomerID" parentColumnName="CustomerID" />
+    </foreignKey>
+    <foreignKey id="OrderEmployee" parentTableSchema="dbo" parentTableName="Employees" baseForeignKey="Order" x="570" y="182">
+      <foreignKeyColumn columnName="EmployeeID" parentColumnName="EmployeeID" />
+    </foreignKey>
+    <foreignKey id="OrderShipVia" parentTableSchema="dbo" parentTableName="Shippers" baseForeignKey="Order" x="570" y="365">
+      <foreignKeyColumn columnName="ShipVia" parentColumnName="ShipperID" />
+    </foreignKey>
+    <foreignKey id="Product" parentTableSchema="dbo" parentTableName="Products" x="282" y="227">
+      <foreignKeyColumn columnName="ProductID" parentColumnName="ProductID" />
+    </foreignKey>
+    <foreignKey id="ProductCategory" parentTableSchema="dbo" parentTableName="Categories" baseForeignKey="Product" x="867" y="20">
+      <foreignKeyColumn columnName="CategoryID" parentColumnName="CategoryID" />
+    </foreignKey>
+    <foreignKey id="ProductSupplier" parentTableSchema="dbo" parentTableName="Suppliers" baseForeignKey="Product" x="867" y="182">
+      <foreignKeyColumn columnName="SupplierID" parentColumnName="SupplierID" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="OrderID" fieldName="OrderID" label="Order ID" />
+    <column name="CustomerID" fieldName="OrderCustomerID" foreignKey="Order" />
+    <column name="CompanyName" fieldName="OrderCustomerCompanyName" label="Order Customer Company Name" foreignKey="OrderCustomer" />
+    <column name="LastName" fieldName="OrderEmployeeLastName" label="Order Employee Last Name" foreignKey="OrderEmployee" />
+    <column name="CompanyName" fieldName="OrderShipViaCompanyName" label="Order Ship Via Company Name" foreignKey="OrderShipVia" />
+    <column name="ProductID" fieldName="ProductID" label="Product ID" aliasColumnName="ProductName" aliasForeignKey="Product" />
+    <column name="ProductName" fieldName="ProductName" label="Product Name" foreignKey="Product" />
+    <column name="CategoryName" fieldName="ProductCategoryName" label="Product Category Name" foreignKey="ProductCategory" />
+    <column name="CompanyName" fieldName="ProductSupplierCompanyName" label="Product Supplier Company Name" foreignKey="ProductSupplier" />
+    <column name="UnitPrice" fieldName="UnitPrice" label="Unit Price" format="c" />
+    <column name="Quantity" fieldName="Quantity" label="Quantity" />
+    <column name="Discount" fieldName="Discount" label="Discount" />
+  </columns>
+</dataModel>

@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="Orders" conflictDetection="overwriteChanges" label="Orders" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <commands>
+    <command id="command1" type="Text">
+      <text><![CDATA[
+select
+	"Orders"."OrderID" "OrderID"
+	,"Orders"."CustomerID" "CustomerID"
+	,"Customer"."CompanyName" "CustomerCompanyName"
+	,"Orders"."EmployeeID" "EmployeeID"
+	,"Employee"."LastName" "EmployeeLastName"
+	,"Orders"."OrderDate" "OrderDate"
+	,"Orders"."RequiredDate" "RequiredDate"
+	,"Orders"."ShippedDate" "ShippedDate"
+	,"Orders"."ShipVia" "ShipVia"
+	,"ShipVia"."CompanyName" "ShipViaCompanyName"
+	,"Orders"."Freight" "Freight"
+	,"Orders"."ShipName" "ShipName"
+	,"Orders"."ShipAddress" "ShipAddress"
+	,"Orders"."ShipCity" "ShipCity"
+	,"Orders"."ShipRegion" "ShipRegion"
+	,"Orders"."ShipPostalCode" "ShipPostalCode"
+	,"Orders"."ShipCountry" "ShipCountry"
+from "dbo"."Orders" "Orders"
+	left join "dbo"."Customers" "Customer" on "Orders"."CustomerID" = "Customer"."CustomerID"
+	left join "dbo"."Employees" "Employee" on "Orders"."EmployeeID" = "Employee"."EmployeeID"
+	left join "dbo"."Shippers" "ShipVia" on "Orders"."ShipVia" = "ShipVia"."ShipperID"
+]]></text>
+    </command>
+    <command id="OrderIDIdentityCommand" type="Text" event="Inserted">
+      <text><![CDATA[select @@identity]]></text>
+      <output>
+        <fieldOutput fieldName="OrderID" />
+      </output>
+    </command>
+  </commands>
+  <fields>
+    <field name="OrderID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Order ID" readOnly="true" />
+    <field name="CustomerID" type="String" label="Customer ID" length="5" showInSummary="true">
+      <items style="Lookup" dataController="Customers" newDataView="createForm1" dataValueField="CustomerID" dataTextField="CompanyName" />
+    </field>
+    <field name="CustomerCompanyName" type="String" readOnly="true" label="Customer Company Name" length="40" />
+    <field name="EmployeeID" type="Int32" label="Employee ID" showInSummary="true">
+      <items style="Lookup" dataController="Employees" newDataView="createForm1" dataValueField="EmployeeID" dataTextField="LastName" />
+    </field>
+    <field name="EmployeeLastName" type="String" readOnly="true" label="Employee Last Name" length="20" />
+    <field name="OrderDate" type="DateTime" dataFormatString="g" label="Order Date" showInSummary="true" />
+    <field name="RequiredDate" type="DateTime" dataFormatString="g" label="Required Date" showInSummary="true" />
+    <field name="ShippedDate" type="DateTime" dataFormatString="g" label="Shipped Date" showInSummary="true" />
+    <field name="ShipVia" type="Int32" label="Ship Via">
+      <items style="Lookup" dataController="Shippers" newDataView="createForm1" dataValueField="ShipperID" dataTextField="CompanyName" />
+    </field>
+    <field name="ShipViaCompanyName" type="String" readOnly="true" label="Ship Via Company Name" length="40" />
+    <field name="Freight" type="Decimal" dataFormatString="c" default="((0))" label="Freight" />
+    <field name="ShipName" type="String" label="Ship Name" length="40" />
+    <field name="ShipAddress" type="String" label="Ship Address" length="60" />
+    <field name="ShipCity" type="String" label="Ship City" length="15" />
+    <field name="ShipRegion" type="String" label="Ship Region" length="15" />
+    <field name="ShipPostalCode" type="String" label="Ship Postal Code" length="10" />
+    <field name="ShipCountry" type="String" label="Ship Country" length="15" />
+  </fields>
+  <views>
+    <view id="grid1" type="Grid" commandId="command1" label="Orders">
+      <headerText>$DefaultGridViewDescription</headerText>
+      <dataFields>
+        <dataField fieldName="CustomerID" aliasFieldName="CustomerCompanyName" />
+        <dataField fieldName="EmployeeID" aliasFieldName="EmployeeLastName" />
+        <dataField fieldName="OrderDate" columns="20" />
+        <dataField fieldName="RequiredDate" columns="20" />
+        <dataField fieldName="ShippedDate" columns="20" />
+        <dataField fieldName="ShipVia" aliasFieldName="ShipViaCompanyName" />
+        <dataField fieldName="Freight" columns="15" />
+        <dataField fieldName="ShipName" columns="40" />
+        <dataField fieldName="ShipAddress" />
+        <dataField fieldName="ShipCity" columns="15" />
+        <dataField fieldName="ShipRegion" columns="15" />
+        <dataField fieldName="ShipPostalCode" columns="10" />
+        <dataField fieldName="ShipCountry" columns="15" />
+      </dataFields>
+    </view>
+    <view id="editForm1" type="Form" commandId="command1" label="Review Orders">
+      <headerText>$DefaultEditViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="Orders" flow="NewColumn">
+          <description><![CDATA[$DefaultEditDescription]]></description>
+          <dataFields>
+            <dataField fieldName="CustomerID" aliasFieldName="CustomerCompanyName" />
+            <dataField fieldName="EmployeeID" aliasFieldName="EmployeeLastName" />
+            <dataField fieldName="OrderDate" columns="20" />
+            <dataField fieldName="RequiredDate" columns="20" />
+            <dataField fieldName="ShippedDate" columns="20" />
+            <dataField fieldName="ShipVia" aliasFieldName="ShipViaCompanyName" />
+            <dataField fieldName="Freight" columns="15" />
+            <dataField fieldName="ShipName" columns="40" />
+            <dataField fieldName="ShipAddress" />
+            <dataField fieldName="ShipCity" columns="15" />
+            <dataField fieldName="ShipRegion" columns="15" />
+            <dataField fieldName="ShipPostalCode" columns="10" />
+            <dataField fieldName="ShipCountry" columns="15" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+    <view id="createForm1" type="Form" commandId="command1" label="New Orders">
+      <headerText>$DefaultCreateViewDescription</headerText>
+      <categories>
+        <category id="c1" flow="NewColumn">
+          <description><![CDATA[$DefaultNewDescription]]></description>
+          <dataFields>
+            <dataField fieldName="CustomerID" aliasFieldName="CustomerCompanyName" />
+            <dataField fieldName="EmployeeID" aliasFieldName="EmployeeLastName" />
+            <dataField fieldName="OrderDate" columns="20" />
+            <dataField fieldName="RequiredDate" columns="20" />
+            <dataField fieldName="ShippedDate" columns="20" />
+            <dataField fieldName="ShipVia" aliasFieldName="ShipViaCompanyName" />
+            <dataField fieldName="Freight" columns="15" />
+            <dataField fieldName="ShipName" columns="40" />
+            <dataField fieldName="ShipAddress" />
+            <dataField fieldName="ShipCity" columns="15" />
+            <dataField fieldName="ShipRegion" columns="15" />
+            <dataField fieldName="ShipPostalCode" columns="10" />
+            <dataField fieldName="ShipCountry" columns="15" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+  </views>
+  <actions>
+    <actionGroup id="ag1" scope="Grid">
+      <action id="a1" commandName="Select" commandArgument="editForm1" />
+      <action id="a2" commandName="Edit" />
+      <action id="a3" commandName="Delete" />
+      <action id="a6" />
+      <action id="a7" commandName="New" commandArgument="grid1" />
+      <action id="a8" commandName="Duplicate" commandArgument="createForm1" />
+    </actionGroup>
+    <actionGroup id="ag2" scope="Form">
+      <action id="a1" commandName="Edit" />
+      <action id="a2" commandName="Delete" />
+      <action id="a3" commandName="Cancel" />
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" commandArgument="Save" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" commandArgument="Save" />
+      <action id="a7" whenLastCommandName="New" commandName="Insert" commandArgument="SaveAndNew" />
+      <action id="a8" whenLastCommandName="New" commandName="Cancel" />
+      <action id="a9" whenLastCommandName="Duplicate" commandName="Insert" />
+      <action id="a10" whenLastCommandName="Duplicate" commandName="Cancel" />
+      <action id="a13" whenLastCommandName="Insert" whenLastCommandArgument="Save" whenView="createForm1" commandName="Select" commandArgument="editForm1" whenClientScript="this.hasDetails()" />
+      <action id="a14" whenLastCommandName="Insert" whenLastCommandArgument="SaveAndNew" commandName="New" commandArgument="createForm1" />
+    </actionGroup>
+    <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
+      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" />
+    </actionGroup>
+    <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
+      <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" />
+      <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" />
+    </actionGroup>
+    <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
+      <action id="a1" commandName="ExportCsv" />
+      <action id="a2" />
+      <action id="a3" commandName="ExportRowset" />
+      <action id="a4" commandName="ExportRss" />
+      <action id="a5" />
+      <action id="a6" commandName="Import" commandArgument="createForm1" />
+      <action id="a7" commandName="DataSheet" />
+      <action id="a8" commandName="Grid" />
+    </actionGroup>
+    <actionGroup id="ag6" scope="ActionBar" headerText="Record">
+      <action id="a1" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a2" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a3" whenLastCommandName="New" commandName="Insert" />
+      <action id="a4" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+    <actionGroup id="ag7" scope="ActionBar" headerText="Report">
+      <action id="a1" commandName="ReportAsPdf" />
+      <action id="a2" commandName="ReportAsImage" />
+      <action id="a3" commandName="ReportAsExcel" />
+      <action id="a4" commandName="ReportAsWord" />
+    </actionGroup>
+    <actionGroup id="ag8" scope="Row">
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" />
+      <action id="a7" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+  </actions>
+</dataController>

@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="Orders" alias="Orders" created="2020-08-01T12:29:06" modified="2020-08-01T12:29:07" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="Customer" parentTableSchema="dbo" parentTableName="Customers" x="315" y="20">
+      <foreignKeyColumn columnName="CustomerID" parentColumnName="CustomerID" />
+    </foreignKey>
+    <foreignKey id="Employee" parentTableSchema="dbo" parentTableName="Employees" x="315" y="181">
+      <foreignKeyColumn columnName="EmployeeID" parentColumnName="EmployeeID" />
+    </foreignKey>
+    <foreignKey id="ShipVia" parentTableSchema="dbo" parentTableName="Shippers" x="315" y="365">
+      <foreignKeyColumn columnName="ShipVia" parentColumnName="ShipperID" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="OrderID" fieldName="OrderID" label="Order ID" />
+    <column name="CustomerID" fieldName="CustomerID" label="Customer ID" aliasColumnName="CompanyName" aliasForeignKey="Customer" />
+    <column name="CompanyName" fieldName="CustomerCompanyName" label="Customer Company Name" foreignKey="Customer" />
+    <column name="EmployeeID" fieldName="EmployeeID" label="Employee ID" aliasColumnName="LastName" aliasForeignKey="Employee" />
+    <column name="LastName" fieldName="EmployeeLastName" label="Employee Last Name" foreignKey="Employee" />
+    <column name="OrderDate" fieldName="OrderDate" label="Order Date" format="g" />
+    <column name="RequiredDate" fieldName="RequiredDate" label="Required Date" format="g" />
+    <column name="ShippedDate" fieldName="ShippedDate" label="Shipped Date" format="g" />
+    <column name="ShipVia" fieldName="ShipVia" label="Ship Via" aliasColumnName="CompanyName" aliasForeignKey="ShipVia" />
+    <column name="CompanyName" fieldName="ShipViaCompanyName" label="Ship Via Company Name" foreignKey="ShipVia" />
+    <column name="Freight" fieldName="Freight" label="Freight" format="c" />
+    <column name="ShipName" fieldName="ShipName" label="Ship Name" />
+    <column name="ShipAddress" fieldName="ShipAddress" label="Ship Address" />
+    <column name="ShipCity" fieldName="ShipCity" label="Ship City" />
+    <column name="ShipRegion" fieldName="ShipRegion" label="Ship Region" />
+    <column name="ShipPostalCode" fieldName="ShipPostalCode" label="Ship Postal Code" />
+    <column name="ShipCountry" fieldName="ShipCountry" label="Ship Country" />
+  </columns>
+</dataModel>

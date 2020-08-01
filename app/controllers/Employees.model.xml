@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="Employees" alias="Employees" created="2020-08-01T12:29:18" modified="2020-08-01T12:29:20" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="ReportsTo" parentTableSchema="dbo" parentTableName="Employees" x="322" y="20">
+      <foreignKeyColumn columnName="ReportsTo" parentColumnName="EmployeeID" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="EmployeeID" fieldName="EmployeeID" label="Employee ID" />
+    <column name="LastName" fieldName="LastName" label="Last Name" />
+    <column name="FirstName" fieldName="FirstName" label="First Name" />
+    <column name="Title" fieldName="Title" label="Title" />
+    <column name="TitleOfCourtesy" fieldName="TitleOfCourtesy" label="Title Of Courtesy" />
+    <column name="BirthDate" fieldName="BirthDate" label="Birth Date" format="g" />
+    <column name="HireDate" fieldName="HireDate" label="Hire Date" format="g" />
+    <column name="Address" fieldName="Address" label="Address" />
+    <column name="City" fieldName="City" label="City" />
+    <column name="Region" fieldName="Region" label="Region" />
+    <column name="PostalCode" fieldName="PostalCode" label="Postal Code" />
+    <column name="Country" fieldName="Country" label="Country" />
+    <column name="HomePhone" fieldName="HomePhone" label="Home Phone" />
+    <column name="Extension" fieldName="Extension" label="Extension" />
+    <column name="Photo" fieldName="Photo" label="Photo" />
+    <column name="Notes" fieldName="Notes" label="Notes" />
+    <column name="ReportsTo" fieldName="ReportsTo" label="Reports To" aliasColumnName="LastName" aliasForeignKey="ReportsTo" />
+    <column name="LastName" fieldName="ReportsToLastName" label="Reports To Last Name" foreignKey="ReportsTo" />
+    <column name="PhotoPath" fieldName="PhotoPath" label="Photo Path" />
+  </columns>
+</dataModel>

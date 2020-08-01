@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="Customers" alias="Customers" created="2020-08-01T12:28:46" modified="2020-08-01T12:28:47" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys />
+  <columns>
+    <column name="CustomerID" fieldName="CustomerID" label="Customer ID" />
+    <column name="CompanyName" fieldName="CompanyName" label="Company Name" />
+    <column name="ContactName" fieldName="ContactName" label="Contact Name" />
+    <column name="ContactTitle" fieldName="ContactTitle" label="Contact Title" />
+    <column name="Address" fieldName="Address" label="Address" />
+    <column name="City" fieldName="City" label="City" />
+    <column name="Region" fieldName="Region" label="Region" />
+    <column name="PostalCode" fieldName="PostalCode" label="Postal Code" />
+    <column name="Country" fieldName="Country" label="Country" />
+    <column name="Phone" fieldName="Phone" label="Phone" />
+    <column name="Fax" fieldName="Fax" label="Fax" />
+  </columns>
+</dataModel>

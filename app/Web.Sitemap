@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0">
+  <siteMapNode title="^SiteHome^Home^SiteHome^" description="" url="~/index.html">
+    <siteMapNode title="^HomePath^Home^HomePath^" description="^HomeDesc^Application home page^HomeDesc^" url="~/pages/home" cssClass="Wide" />
+    <siteMapNode title="Categories" description="View Categories" url="~/pages/categories" />
+    <siteMapNode title="Customers" description="View Customers" url="~/pages/customers" />
+    <siteMapNode title="Order Details" description="View Order Details" url="~/pages/order-details" />
+    <siteMapNode title="Orders" description="View Orders" url="~/pages/orders" />
+    <siteMapNode title="Products" description="View Products" url="~/pages/products" />
+    <siteMapNode title="Shippers" description="View Shippers" url="~/pages/shippers" />
+    <siteMapNode title="Suppliers" description="View Suppliers" url="~/pages/suppliers" />
+    <siteMapNode title="Employees" description="View Employees" url="~/pages/employees" />
+  </siteMapNode>
+</siteMap>

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="Products" alias="Products" created="2020-08-01T12:29:09" modified="2020-08-01T12:29:11" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="Supplier" parentTableSchema="dbo" parentTableName="Suppliers" x="320" y="20">
+      <foreignKeyColumn columnName="SupplierID" parentColumnName="SupplierID" />
+    </foreignKey>
+    <foreignKey id="Category" parentTableSchema="dbo" parentTableName="Categories" x="320" y="181">
+      <foreignKeyColumn columnName="CategoryID" parentColumnName="CategoryID" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="ProductID" fieldName="ProductID" label="Product ID" />
+    <column name="ProductName" fieldName="ProductName" label="Product Name" />
+    <column name="SupplierID" fieldName="SupplierID" label="Supplier ID" aliasColumnName="CompanyName" aliasForeignKey="Supplier" />
+    <column name="CompanyName" fieldName="SupplierCompanyName" label="Supplier Company Name" foreignKey="Supplier" />
+    <column name="CategoryID" fieldName="CategoryID" label="Category ID" aliasColumnName="CategoryName" aliasForeignKey="Category" />
+    <column name="CategoryName" fieldName="CategoryName" label="Category Name" foreignKey="Category" />
+    <column name="QuantityPerUnit" fieldName="QuantityPerUnit" label="Quantity Per Unit" />
+    <column name="UnitPrice" fieldName="UnitPrice" label="Unit Price" format="c" />
+    <column name="UnitsInStock" fieldName="UnitsInStock" label="Units In Stock" />
+    <column name="UnitsOnOrder" fieldName="UnitsOnOrder" label="Units On Order" />
+    <column name="ReorderLevel" fieldName="ReorderLevel" label="Reorder Level" />
+    <column name="Discontinued" fieldName="Discontinued" label="Discontinued" />
+  </columns>
+</dataModel>
